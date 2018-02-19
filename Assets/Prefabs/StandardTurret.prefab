@@ -189,9 +189,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 119b58e2acf075741a9c62f5a263f962, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireRate: 0.1
+  fireRate: 0.5
   range: 2
   turnSpeed: 4
+  damage: 50
   head: {fileID: 4037421705536030}
 --- !u!212 &212151830129279712
 SpriteRenderer:
