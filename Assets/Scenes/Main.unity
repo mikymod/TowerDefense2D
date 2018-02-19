@@ -5252,6 +5252,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1690549733}
   - component: {fileID: 1690549734}
+  - component: {fileID: 1690549735}
   m_Layer: 0
   m_Name: GameMaster
   m_TagString: Untagged
@@ -5284,7 +5285,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 20
-  startMoney: 500
+  startMoney: 200
+--- !u!114 &1690549735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1690549732}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fec0eab50140284e9528fc4f51bd817, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  standardTurretPrefab: {fileID: 1245075222342036, guid: af01516ddd088cd4787a0c4349f55951,
+    type: 2}
 --- !u!1001 &1805074646
 Prefab:
   m_ObjectHideFlags: 0

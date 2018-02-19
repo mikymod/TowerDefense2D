@@ -5,23 +5,33 @@ using UnityEngine.EventSystems;
 
 public class Node : MonoBehaviour
 {
-    public GameObject towerPrefab;
-    private GameObject builtTower;
+    private BuildManager buildManager;
+
+    public TowerBlueprint blueprint;
+
+    public GameObject tower;
 
     // Use this for initialization
     void Start()
     {
-        builtTower = null;
+        tower = null;
+
+        buildManager = BuildManager.instance;
+
+        buildManager.SelectTowerToBuild(blueprint);
     }
 
     void OnMouseDown()
     {
-        if (builtTower != null)
+        if (!buildManager.CanBuild)
+            return;
+
+        if (tower != null)
         {
-            // Show Upgrade menu
+            buildManager.SelectNode(this);
             return;
         }
 
-        builtTower = Instantiate(towerPrefab, transform.position, Quaternion.identity);
+        buildManager.BuildTowerOn(this);
     }
 }
