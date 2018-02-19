@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     private int waypointIndex = 0;
     private Transform target;
 
+    public float health = 100f;
 
     void Start()
     {
@@ -49,5 +50,20 @@ public class Enemy : MonoBehaviour
 
         waypointIndex++;
         target = Waypoints.points[waypointIndex];
+    }
+
+    public void TakeDamage(float amount)
+    {
+        health -= amount;
+
+        if (health <= 0.0f)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        Destroy(gameObject);
     }
 }

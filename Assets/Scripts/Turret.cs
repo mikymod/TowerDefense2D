@@ -6,9 +6,9 @@ public class Turret : MonoBehaviour
 {
     public float fireRate = 0.5f;
     private float fireCountdown;
-
     public float range = 2f;
     public float turnSpeed = 2f;
+    public float damage = 50f;
     public Transform head;
 
     private Animator animator;
@@ -59,6 +59,8 @@ public class Turret : MonoBehaviour
             return;
         }
 
+        animator.SetBool("isShooting", true);
+
         if (fireCountdown <= 0.0f)
         {
             Shoot();
@@ -80,7 +82,7 @@ public class Turret : MonoBehaviour
 
     void Shoot()
     {
-        animator.SetBool("isShooting", true);
+        enemy.TakeDamage(damage);
     }
 
     void Idle()
