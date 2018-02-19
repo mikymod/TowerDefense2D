@@ -9,6 +9,7 @@ public class Turret : MonoBehaviour
     public float range = 2f;
     public float turnSpeed = 2f;
     public float damage = 50f;
+    public int cost = 100;
     public Transform head;
 
     private Animator animator;

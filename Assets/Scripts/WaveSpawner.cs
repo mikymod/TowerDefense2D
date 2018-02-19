@@ -23,6 +23,8 @@ public class WaveSpawner : MonoBehaviour
         {
             StartCoroutine(SpawnWave());
             countdown = waveCountdown;
+            Player.Round++;
+            Debug.Log("Player round: " + Player.Round);
         }
 
         countdown -= Time.deltaTime;

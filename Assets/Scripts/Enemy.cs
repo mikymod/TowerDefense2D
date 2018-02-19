@@ -7,6 +7,8 @@ public class Enemy : MonoBehaviour
     public float startSpeed = 10f;
     private float speed;
 
+    public int money = 5;
+
     private int waypointIndex = 0;
     private Transform target;
 
@@ -44,6 +46,8 @@ public class Enemy : MonoBehaviour
     {
         if (waypointIndex >= Waypoints.points.Length - 1)
         {
+            Player.Health--;
+            Debug.Log("Player health: " + Player.Health);
             Destroy(gameObject);
             return;
         }
@@ -64,6 +68,8 @@ public class Enemy : MonoBehaviour
 
     void Die()
     {
+        Player.Money += money;
+        Debug.Log("Player money: " + Player.Money);
         Destroy(gameObject);
     }
 }
