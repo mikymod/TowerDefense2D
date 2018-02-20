@@ -42,6 +42,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 683948369
+    locked: 0
   - name: Towers
     uniqueID: 3350074465
     locked: 0

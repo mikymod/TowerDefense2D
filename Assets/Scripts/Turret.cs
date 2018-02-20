@@ -19,7 +19,7 @@ public class Turret : MonoBehaviour
 
     void Start()
     {
-        animator = gameObject.GetComponent<Animator>();
+        animator = gameObject.GetComponentInChildren<Animator>();
         fireCountdown = fireRate;
 
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
@@ -60,8 +60,6 @@ public class Turret : MonoBehaviour
             return;
         }
 
-        animator.SetBool("isShooting", true);
-
         if (fireCountdown <= 0.0f)
         {
             Shoot();
@@ -83,6 +81,7 @@ public class Turret : MonoBehaviour
 
     void Shoot()
     {
+        animator.SetBool("isShooting", true);
         enemy.TakeDamage(damage);
     }
 
