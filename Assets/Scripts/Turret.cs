@@ -12,6 +12,9 @@ public class Turret : MonoBehaviour
     public int cost = 100;
     public Transform head;
 
+    public GameObject projectile;
+    public Transform firePoint;
+
     private Animator animator;
     private Transform target;
     private Enemy enemy;
@@ -81,13 +84,17 @@ public class Turret : MonoBehaviour
 
     void Shoot()
     {
-        animator.SetBool("isShooting", true);
+        animator.SetTrigger("Shoot");
+
+        // if (projectile != null)
+        //     Instantiate(projectile, firePoint.position, head.rotation);
+
         enemy.TakeDamage(damage);
     }
 
     void Idle()
     {
-        animator.SetBool("isShooting", false);
+        animator.ResetTrigger("Shoot");
     }
 
     void OnDrawGizmosSelected()
