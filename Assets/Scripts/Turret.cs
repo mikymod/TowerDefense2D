@@ -86,8 +86,13 @@ public class Turret : MonoBehaviour
     {
         animator.SetTrigger("Shoot");
 
-        // if (projectile != null)
-        //     Instantiate(projectile, firePoint.position, head.rotation);
+        if (projectile != null)
+        {
+            GameObject projGO = Instantiate(projectile, firePoint.position, head.rotation);
+            Projectile projScript = projGO.GetComponent<Projectile>();
+            projScript.target = target;
+            return;
+        }
 
         enemy.TakeDamage(damage);
     }
