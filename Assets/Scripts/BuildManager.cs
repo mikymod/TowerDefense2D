@@ -57,10 +57,16 @@ public class BuildManager : MonoBehaviour
     public void BuildTowerOn(Node node)
     {
         if (!CanBuild)
+        {
+            Debug.Log("You have to select a tower blueprint!");
             return;
+        }
 
         if (!HasMoney)
-            Debug.Log("You don't have enough money");
+        {
+            Debug.Log("You don't have enough money!");
+            return;
+        }
 
         Player.Money -= towerToBuild.cost;
         Debug.Log("Player money: " + Player.Money);

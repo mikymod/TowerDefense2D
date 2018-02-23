@@ -17,8 +17,6 @@ public class Node : MonoBehaviour
         tower = null;
 
         buildManager = BuildManager.instance;
-
-        buildManager.SelectTowerToBuild(blueprint);
     }
 
     void OnMouseDown()
