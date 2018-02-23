@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour
 {
@@ -12,12 +13,16 @@ public class Enemy : MonoBehaviour
     private int waypointIndex = 0;
     private Transform target;
 
-    public float health = 100f;
+
+    public float startHealth = 100f;
+    private float health;
+    public Image healthBar;
 
     void Start()
     {
         speed = startSpeed;
         target = Waypoints.points[waypointIndex];
+        health = startHealth;
     }
 
     void Update()
@@ -59,6 +64,8 @@ public class Enemy : MonoBehaviour
     public void TakeDamage(float amount)
     {
         health -= amount;
+
+        healthBar.fillAmount = health / startHealth;
 
         if (health <= 0.0f)
         {
