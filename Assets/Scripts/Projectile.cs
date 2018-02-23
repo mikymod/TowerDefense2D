@@ -11,6 +11,8 @@ public class Projectile : MonoBehaviour
         set { _target = value; }
     }
 
+    public GameObject explosioneHolePrefab;
+
     private float speed = 1f;
     private float distance;
     private float startTime;
@@ -43,6 +45,7 @@ public class Projectile : MonoBehaviour
         if (Vector3.Distance(transform.position, currenttargetPos) < 0.1f)
         {
             Hit();
+            CollateralDamage(currenttargetPos);
             Destroy(gameObject);
         }
     }
@@ -65,6 +68,12 @@ public class Projectile : MonoBehaviour
 
         if (e != null)
             e.TakeDamage(damage);
+    }
+
+    void CollateralDamage(Vector3 targetPos)
+    {
+        GameObject explosionHole = Instantiate(explosioneHolePrefab, targetPos, Quaternion.identity);
+        Destroy(explosionHole, 2f);
     }
 
     void OnDrawGizmosSelected()
