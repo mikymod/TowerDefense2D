@@ -2,29 +2,45 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// FIXME: very basic spawner
 public class WaveSpawner : MonoBehaviour
 {
-    public GameObject enemyPrefab;
-    public float startCountdown = 2f;
-    public float waveCountdown = 5f;
-
     private float countdown;
-    private float waveCounter = 1;
+    // private float waveCounter = 1;
+
+    public Wave[] waves;
+    private int waveIndex = 0;
+
+    private int _progressMaxLevel = 0;
+
+    private int _progressLevel = 0;
+    public int progressLevel
+    {
+        get { return _progressLevel; }
+    }
+
+    public float progressPerc
+    {
+        get { return (float)_progressLevel / (float)_progressMaxLevel; }
+    }
 
     void Start()
     {
-        countdown = startCountdown;
+        foreach (Wave wave in waves)
+            _progressMaxLevel += wave.numEnemy;
+
+        countdown = waves[waveIndex].delay;
     }
 
     void Update()
     {
+        if (waveIndex > waves.Length - 1)
+            return; // End Level
+
         if (countdown <= 0f)
         {
             StartCoroutine(SpawnWave());
-            countdown = waveCountdown;
+            countdown = waves[waveIndex].delay;
             Player.Round++;
-            Debug.Log("Player round: " + Player.Round);
         }
 
         countdown -= Time.deltaTime;
@@ -32,12 +48,15 @@ public class WaveSpawner : MonoBehaviour
 
     IEnumerator SpawnWave()
     {
-        for (int i = 0; i < waveCounter; i++)
+        Wave wave = waves[waveIndex];
+        for (int i = 0; i < wave.numEnemy; i++)
         {
-            Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+            Instantiate(wave.enemyPrefab, wave.spawnPoint.position, Quaternion.identity);
             yield return new WaitForSeconds(0.5f);
         }
 
-        waveCounter++;
+        _progressLevel += wave.numEnemy;
+        waveIndex++;
+        // waveCounter++;
     }
 }
