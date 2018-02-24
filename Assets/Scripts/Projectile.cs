@@ -18,11 +18,13 @@ public class Projectile : MonoBehaviour
     private float startTime;
     private float radius = 0.75f;
     private float damage = 50f;
+
     private Vector3 currenttargetPos;
+
     void Start()
     {
         startTime = Time.time;
-        currenttargetPos = target.position;
+        // currenttargetPos = target.position;
         distance = Vector3.Distance(transform.position, currenttargetPos);
     }
 

@@ -54,6 +54,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   explosioneHolePrefab: {fileID: 1797916236692974, guid: 59ebe08b17a116a469f181a55d7f9a41,
     type: 2}
+  movable: 1
 --- !u!212 &212171996188124442
 SpriteRenderer:
   m_ObjectHideFlags: 1
