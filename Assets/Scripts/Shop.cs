@@ -8,7 +8,7 @@ public class Shop : MonoBehaviour
     private BuildManager _buildManager;
 
     public TowerBlueprint turret;
-    public TowerBlueprint rocketLauncher;
+    public TowerBlueprint cannon;
 
     void Start()
     {
@@ -19,12 +19,11 @@ public class Shop : MonoBehaviour
     {
         Debug.Log("Turret selected");
         _buildManager.SelectTowerToBuild(turret);
-
     }
 
-    public void TaskSelectRocketLauncher()
+    public void TaskSelectCannon()
     {
-        Debug.Log("Rocketlauncher selected");
-        _buildManager.SelectTowerToBuild(rocketLauncher);
+        Debug.Log("Cannon selected");
+        _buildManager.SelectTowerToBuild(cannon);
     }
 }

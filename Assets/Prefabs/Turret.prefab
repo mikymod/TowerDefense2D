@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212220657217008058}
   - component: {fileID: 95752395576207968}
   m_Layer: 0
-  m_Name: TurretHead
+  m_Name: Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4819865526006812}
   - component: {fileID: 114707569746768854}
   m_Layer: 0
-  m_Name: StandardTurret
+  m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,7 +86,7 @@ GameObject:
   - component: {fileID: 4890582262436136}
   - component: {fileID: 212266961219933530}
   m_Layer: 0
-  m_Name: TurretBase
+  m_Name: Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

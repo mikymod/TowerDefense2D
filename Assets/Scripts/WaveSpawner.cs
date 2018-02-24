@@ -5,7 +5,6 @@ using UnityEngine;
 public class WaveSpawner : MonoBehaviour
 {
     private float countdown;
-    // private float waveCounter = 1;
 
     public Wave[] waves;
     private int waveIndex = 0;
@@ -57,6 +56,5 @@ public class WaveSpawner : MonoBehaviour
 
         _progressLevel += wave.numEnemy;
         waveIndex++;
-        // waveCounter++;
     }
 }

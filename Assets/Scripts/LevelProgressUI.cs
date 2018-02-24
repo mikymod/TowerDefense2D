@@ -10,7 +10,7 @@ public class LevelProgressUI : MonoBehaviour
     private float progress = 0f;
 
     // Use this for initialization
-    void Start()
+    void Awake()
     {
         slider.value = progress;
     }

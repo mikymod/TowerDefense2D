@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class Tower : MonoBehaviour
 {
     public float fireRate = 0.5f;
     private float fireCountdown;

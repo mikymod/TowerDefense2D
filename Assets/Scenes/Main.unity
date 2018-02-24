@@ -6632,7 +6632,7 @@ GameObject:
   - component: {fileID: 1642887676}
   - component: {fileID: 1642887675}
   m_Layer: 5
-  m_Name: RocketLauncherButton
+  m_Name: CannonButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6697,7 +6697,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1724479419}
-        m_MethodName: TaskSelectRocketLauncher
+        m_MethodName: TaskSelectCannon
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6853,7 +6853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startHealth: 20
-  startMoney: 200
+  startMoney: 400
 --- !u!114 &1690549735
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7012,7 +7012,7 @@ MonoBehaviour:
   turret:
     prefab: {fileID: 1245075222342036, guid: af01516ddd088cd4787a0c4349f55951, type: 2}
     cost: 100
-  rocketLauncher:
+  cannon:
     prefab: {fileID: 1281956401665524, guid: bdf3f345cacb0934aa3fa7c2bf0a23c5, type: 2}
     cost: 200
 --- !u!1 &1780243582
@@ -7297,11 +7297,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4906118430899986, guid: fc092880bd086654eb5c2bd783b902f9, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 1.48
+      value: 1.23
       objectReference: {fileID: 0}
     - target: {fileID: 4906118430899986, guid: fc092880bd086654eb5c2bd783b902f9, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.78
+      value: -1.17
       objectReference: {fileID: 0}
     - target: {fileID: 4906118430899986, guid: fc092880bd086654eb5c2bd783b902f9, type: 2}
       propertyPath: m_LocalPosition.z
