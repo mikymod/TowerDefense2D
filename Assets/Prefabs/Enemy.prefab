@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d13aaedb611a29246af016774570f001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startSpeed: 1.5
+  startSpeed: 5
   money: 5
   startHealth: 100
   healthBar: {fileID: 114743652215987340}
