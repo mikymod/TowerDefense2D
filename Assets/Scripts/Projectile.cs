@@ -14,7 +14,7 @@ public class Projectile : MonoBehaviour
     public GameObject explosioneHolePrefab;
 
     private float speed = 1f;
-    private float distance;
+    // private float distance;
     private float startTime;
     private float radius = 0.75f;
     private float damage = 50f;
@@ -25,7 +25,7 @@ public class Projectile : MonoBehaviour
     {
         startTime = Time.time;
         // currenttargetPos = target.position;
-        distance = Vector3.Distance(transform.position, currenttargetPos);
+        // distance = Vector3.Distance(transform.position, currenttargetPos);
     }
 
     void Update()

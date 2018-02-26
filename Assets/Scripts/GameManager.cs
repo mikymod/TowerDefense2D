@@ -20,11 +20,11 @@ public class GameManager : MonoBehaviour
 
         if (Player.Health <= 0)
         {
-            EndGame();
+            GameOver();
         }
     }
 
-    void EndGame()
+    void GameOver()
     {
         Time.timeScale = 0f;
         GameIsOver = true;
