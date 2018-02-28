@@ -6,10 +6,14 @@ using UnityEngine.EventSystems;
 public class Node : MonoBehaviour
 {
     private BuildManager buildManager;
+    private TowerBlueprint blueprint;
 
-    public TowerBlueprint blueprint;
-
-    public GameObject tower;
+    private GameObject _tower;
+    public GameObject tower
+    {
+        get { return _tower; }
+        set { _tower = value; }
+    }
 
     // Use this for initialization
     void Start()
