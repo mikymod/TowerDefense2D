@@ -51,7 +51,13 @@ public class WaveSpawner : MonoBehaviour
         Wave wave = waves[waveIndex];
         for (int i = 0; i < wave.numEnemy; i++)
         {
-            Instantiate(wave.enemyPrefab, _spawn.position, Quaternion.identity);
+            float offsetX = Random.Range(-_range * 0.5f, _range * 0.5f);
+            float offsetY = Random.Range(-_range * 0.5f, _range * 0.5f);
+            Vector3 curPos = _spawn.position;
+            curPos.x += offsetX;
+            curPos.y += offsetY;
+
+            Instantiate(wave.enemyPrefab, curPos, Quaternion.identity);
             yield return new WaitForSeconds(0.5f);
         }
 
