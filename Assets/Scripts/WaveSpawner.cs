@@ -7,15 +7,10 @@ public class WaveSpawner : MonoBehaviour
     public Wave[] waves;
     private int waveIndex = 0;
 
-    private int _progressMaxLevel = 0;
+    static private int _progressMaxLevel = 0;
+    static private int _progressLevel = 0;
 
-    private int _progressLevel = 0;
-    public int progressLevel
-    {
-        get { return _progressLevel; }
-    }
-
-    public float progressPerc
+    static public float progressPerc
     {
         get { return (float)_progressLevel / (float)_progressMaxLevel; }
     }

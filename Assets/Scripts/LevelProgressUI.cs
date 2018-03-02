@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class LevelProgressUI : MonoBehaviour
 {
-    public WaveSpawner waveSpawner;
     public Slider slider;
     private float progress = 0f;
 
@@ -18,7 +17,7 @@ public class LevelProgressUI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (progress >= waveSpawner.progressPerc)
+        if (progress >= WaveSpawner.progressPerc)
             return;
 
         progress += Time.deltaTime;
