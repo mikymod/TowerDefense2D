@@ -19,6 +19,8 @@ public class WaveSpawner : MonoBehaviour
 
     private Transform _spawn;
 
+    public float _range = 1f;
+
     void Start()
     {
         foreach (Wave wave in waves)
@@ -55,5 +57,11 @@ public class WaveSpawner : MonoBehaviour
 
         _progressLevel += wave.numEnemy;
         waveIndex++;
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = new Color(255f, 0f, 0f, 255f);
+        Gizmos.DrawWireSphere(transform.position, _range);
     }
 }

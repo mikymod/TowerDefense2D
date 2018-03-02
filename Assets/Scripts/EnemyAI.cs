@@ -9,7 +9,7 @@ public class EnemyAI : MonoBehaviour
     // what to chase?
     public Transform target;
     // how many times each second we will update our path
-    public float updateRate = 2f;
+    public float updateRate = 4f;
 
     // caching
     private Seeker seeker;
@@ -123,6 +123,8 @@ public class EnemyAI : MonoBehaviour
             }
 
             Debug.Log("End of path reached");
+            Destroy(gameObject);
+            Player.Health--;
             pathIsEnded = true;
             return;
         }

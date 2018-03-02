@@ -190,7 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireRate: 0.4
-  range: 2
+  range: 3
   turnSpeed: 4
   damage: 25
   cost: 100
