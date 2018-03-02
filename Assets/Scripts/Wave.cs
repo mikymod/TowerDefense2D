@@ -7,6 +7,5 @@ public class Wave
 {
     public int numEnemy;
     public GameObject enemyPrefab;
-    public Transform spawnPoint;
     public float delay;
 }

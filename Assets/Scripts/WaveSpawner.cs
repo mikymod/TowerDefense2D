@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class WaveSpawner : MonoBehaviour
 {
-    private float countdown;
-
     public Wave[] waves;
     private int waveIndex = 0;
 
@@ -22,12 +20,18 @@ public class WaveSpawner : MonoBehaviour
         get { return (float)_progressLevel / (float)_progressMaxLevel; }
     }
 
+    private float countdown;
+
+    private Transform _spawn;
+
     void Start()
     {
         foreach (Wave wave in waves)
             _progressMaxLevel += wave.numEnemy;
 
         countdown = waves[waveIndex].delay;
+
+        _spawn = GetComponentInParent<Transform>();
     }
 
     void Update()
@@ -50,7 +54,7 @@ public class WaveSpawner : MonoBehaviour
         Wave wave = waves[waveIndex];
         for (int i = 0; i < wave.numEnemy; i++)
         {
-            Instantiate(wave.enemyPrefab, wave.spawnPoint.position, Quaternion.identity);
+            Instantiate(wave.enemyPrefab, _spawn.position, Quaternion.identity);
             yield return new WaitForSeconds(0.5f);
         }
 
