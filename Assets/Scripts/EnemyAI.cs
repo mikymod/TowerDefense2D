@@ -22,9 +22,6 @@ public class EnemyAI : MonoBehaviour
     public float speed = 300f;
     public ForceMode2D forceMode;
 
-    [HideInInspector]
-    public bool pathIsEnded = false;
-
     // the max distance from the AI to a waypoint for it to continue to the next waypoint
     public float nextWaypointDistance = 3f;
 
@@ -33,43 +30,48 @@ public class EnemyAI : MonoBehaviour
 
     private bool searchingForEndPoint = false;
 
+    [HideInInspector]
+    public bool pathIsEnded = false;
+
+    private GameObject[] _ends;
+
     void Start()
     {
         seeker = GetComponent<Seeker>();
         rb = GetComponent<Rigidbody2D>();
+        _ends = GameObject.FindGameObjectsWithTag("End");
 
-        if (target == null)
-        {
-            if (!searchingForEndPoint)
-            {
-                searchingForEndPoint = true;
-                StartCoroutine(SearchForEndPoint());
-            }
-            return;
-        }
+        searchingForEndPoint = true;
+        StartCoroutine(SearchForEndPoint());
 
         // start a new path to the target position and return the result to the OnPathComplete method
         if (target != null)
             seeker.StartPath(transform.position, target.position, OnPathComplete);
+    }
 
-        StartCoroutine(UpdatePath());
+    Transform GetNearestEnd()
+    {
+        Transform target = null;
+        float distance = Mathf.Infinity;
+        foreach (GameObject end in _ends)
+        {
+            float curDistance = Vector3.Distance(end.transform.position, transform.position);
+            if (curDistance < distance)
+            {
+                distance = curDistance;
+                target = end.transform;
+            }
+        }
+
+        return target;
     }
 
     IEnumerator SearchForEndPoint()
     {
-        GameObject sResult = GameObject.FindGameObjectWithTag("End");
-        if (sResult == null)
-        {
-            yield return new WaitForSeconds(0.5f);
-            StartCoroutine(SearchForEndPoint());
-        }
-        else
-        {
-            searchingForEndPoint = false;
-            target = sResult.transform;
-            StartCoroutine(UpdatePath());
-            yield return false;
-        }
+        searchingForEndPoint = false;
+        target = GetNearestEnd();
+        StartCoroutine(UpdatePath());
+        yield return false;
     }
 
     IEnumerator UpdatePath()
@@ -89,9 +91,7 @@ public class EnemyAI : MonoBehaviour
             seeker.StartPath(transform.position, target.position, OnPathComplete);
         }
 
-
         yield return new WaitForSeconds(1f / updateRate);
-        StartCoroutine(UpdatePath());
     }
 
     public void OnPathComplete(Path p)
@@ -107,15 +107,7 @@ public class EnemyAI : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (target == null)
-        {
-            if (!searchingForEndPoint)
-            {
-                searchingForEndPoint = true;
-                StartCoroutine(SearchForEndPoint());
-            }
-            return;
-        }
+        StartCoroutine(SearchForEndPoint());
 
         if (path == null)
         {
