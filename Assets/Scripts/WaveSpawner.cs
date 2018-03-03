@@ -5,7 +5,7 @@ using UnityEngine;
 public class WaveSpawner : MonoBehaviour
 {
     public Wave[] waves;
-    private int waveIndex = 0;
+    private int _waveIndex = 0;
 
     static private int _progressMaxLevel = 0;
     static private int _progressLevel = 0;
@@ -15,7 +15,7 @@ public class WaveSpawner : MonoBehaviour
         get { return (float)_progressLevel / (float)_progressMaxLevel; }
     }
 
-    private float countdown;
+    private float _countdown;
 
     private Transform _spawn;
 
@@ -26,29 +26,29 @@ public class WaveSpawner : MonoBehaviour
         foreach (Wave wave in waves)
             _progressMaxLevel += wave.numEnemy;
 
-        countdown = waves[waveIndex].delay;
+        _countdown = waves[_waveIndex].delay;
 
         _spawn = GetComponentInParent<Transform>();
     }
 
     void Update()
     {
-        if (waveIndex > waves.Length - 1)
+        if (_waveIndex > waves.Length - 1)
             return; // End Level
 
-        if (countdown <= 0f)
+        if (_countdown <= 0f)
         {
             StartCoroutine(SpawnWave());
-            countdown = waves[waveIndex].delay;
+            _countdown = waves[_waveIndex].delay;
             Player.Round++;
         }
 
-        countdown -= Time.deltaTime;
+        _countdown -= Time.deltaTime;
     }
 
     IEnumerator SpawnWave()
     {
-        Wave wave = waves[waveIndex];
+        Wave wave = waves[_waveIndex];
         for (int i = 0; i < wave.numEnemy; i++)
         {
             float offsetX = Random.Range(-_range * 0.5f, _range * 0.5f);
@@ -62,7 +62,7 @@ public class WaveSpawner : MonoBehaviour
         }
 
         _progressLevel += wave.numEnemy;
-        waveIndex++;
+        _waveIndex++;
     }
 
     void OnDrawGizmosSelected()

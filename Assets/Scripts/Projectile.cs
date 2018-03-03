@@ -13,19 +13,16 @@ public class Projectile : MonoBehaviour
 
     public GameObject explosioneHolePrefab;
 
-    private float speed = 1f;
-    // private float distance;
-    private float startTime;
-    private float radius = 0.75f;
-    private float damage = 50f;
+    private float _speed = 1f;
+    private float _startTime;
+    private float _range = 1.5f;
+    private float _damage = 50f;
 
     private Vector3 currenttargetPos;
 
     void Start()
     {
-        startTime = Time.time;
-        // currenttargetPos = target.position;
-        // distance = Vector3.Distance(transform.position, currenttargetPos);
+        _startTime = Time.time;
     }
 
     void Update()
@@ -35,7 +32,7 @@ public class Projectile : MonoBehaviour
 
         Vector3 dir = (currenttargetPos - transform.position).normalized;
         float distance = Vector3.Distance(transform.position, currenttargetPos);
-        float distanceCovered = (Time.time - startTime) * speed;
+        float distanceCovered = (Time.time - _startTime) * _speed;
         float fractionJourney = distanceCovered / distance;
         transform.position = Vector3.Lerp(transform.position, currenttargetPos, fractionJourney);
 
@@ -54,7 +51,7 @@ public class Projectile : MonoBehaviour
 
     void Hit()
     {
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, radius);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(transform.position, _range);
         foreach (Collider2D collider in colliders)
         {
             if (collider.tag == "Enemy")
@@ -69,7 +66,7 @@ public class Projectile : MonoBehaviour
         Enemy e = target.GetComponent<Enemy>();
 
         if (e != null)
-            e.TakeDamage(damage);
+            e.TakeDamage(_damage);
     }
 
     void CollateralDamage(Vector3 targetPos)
@@ -81,6 +78,6 @@ public class Projectile : MonoBehaviour
     void OnDrawGizmosSelected()
     {
         Gizmos.color = new Color(255f, 0f, 0f, 255f);
-        Gizmos.DrawWireSphere(transform.position, radius);
+        Gizmos.DrawWireSphere(transform.position, _range);
     }
 }

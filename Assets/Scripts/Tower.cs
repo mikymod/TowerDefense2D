@@ -4,33 +4,36 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+    [Header("Settings")]
     public float fireRate = 0.5f;
-    private float fireCountdown;
+    private float _fireCountdown;
     public float range = 2f;
     public float turnSpeed = 2f;
     public float damage = 50f;
     public int cost = 100;
-    public Transform head;
 
+    [Header("Required")]
+    public Transform head;
     public GameObject projectile;
     public Transform firePoint;
 
-    private Animator animator;
-    private Transform target;
-    private Enemy enemy;
-    private const string enemyTag = "Enemy";
+    private Animator _animator;
+    private Transform _target;
+    private Enemy _enemy;
+
+    private const string ENEMY_TAG = "Enemy";
 
     void Start()
     {
-        animator = gameObject.GetComponentInChildren<Animator>();
-        fireCountdown = fireRate;
+        _animator = gameObject.GetComponentInChildren<Animator>();
+        _fireCountdown = fireRate;
 
         InvokeRepeating("UpdateTarget", 0f, 0.5f);
     }
 
     void UpdateTarget()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(ENEMY_TAG);
         float shortestDistance = Mathf.Infinity;
         GameObject nearestEnemy = null;
 
@@ -46,37 +49,37 @@ public class Tower : MonoBehaviour
 
         if (nearestEnemy != null && shortestDistance <= range)
         {
-            this.target = nearestEnemy.transform;
-            this.enemy = nearestEnemy.GetComponent<Enemy>();
+            this._target = nearestEnemy.transform;
+            this._enemy = nearestEnemy.GetComponent<Enemy>();
         }
         else
         {
-            this.target = null;
+            this._target = null;
         }
     }
 
     void Update()
     {
-        if (target == null)
+        if (_target == null)
         {
             Idle();
             return;
         }
 
-        if (fireCountdown <= 0.0f)
+        if (_fireCountdown <= 0.0f)
         {
             Shoot();
-            fireCountdown = fireRate;
+            _fireCountdown = fireRate;
         }
 
         LockOnTarget();
 
-        fireCountdown -= Time.deltaTime;
+        _fireCountdown -= Time.deltaTime;
     }
 
     void LockOnTarget()
     {
-        Vector3 dir = target.position - transform.position;
+        Vector3 dir = _target.position - transform.position;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg - 90;
         Quaternion newRotation = Quaternion.AngleAxis(angle, Vector3.forward);
         head.rotation = Quaternion.Lerp(head.rotation, newRotation, turnSpeed * Time.deltaTime);
@@ -84,22 +87,22 @@ public class Tower : MonoBehaviour
 
     void Shoot()
     {
-        animator.SetTrigger("Shoot");
+        _animator.SetTrigger("Shoot");
 
         if (projectile != null)
         {
             GameObject projGO = Instantiate(projectile, firePoint.position, head.rotation);
             Projectile projScript = projGO.GetComponent<Projectile>();
-            projScript.target = target;
+            projScript.target = _target;
             return;
         }
 
-        enemy.TakeDamage(damage);
+        _enemy.TakeDamage(damage);
     }
 
     void Idle()
     {
-        animator.ResetTrigger("Shoot");
+        _animator.ResetTrigger("Shoot");
     }
 
     void OnDrawGizmosSelected()

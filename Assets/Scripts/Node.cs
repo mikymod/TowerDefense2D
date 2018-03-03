@@ -5,8 +5,8 @@ using UnityEngine.EventSystems;
 
 public class Node : MonoBehaviour
 {
-    private BuildManager buildManager;
-    private TowerBlueprint blueprint;
+    private BuildManager _buildManager;
+    private TowerBlueprint _blueprint;
 
     private GameObject _tower;
     public GameObject tower
@@ -20,20 +20,20 @@ public class Node : MonoBehaviour
     {
         tower = null;
 
-        buildManager = BuildManager.instance;
+        _buildManager = BuildManager.instance;
     }
 
     void OnMouseDown()
     {
-        if (!buildManager.CanBuild)
+        if (!_buildManager.CanBuild)
             return;
 
         if (tower != null)
         {
-            buildManager.SelectNode(this);
+            _buildManager.SelectNode(this);
             return;
         }
 
-        buildManager.BuildTowerOn(this);
+        _buildManager.BuildTowerOn(this);
     }
 }

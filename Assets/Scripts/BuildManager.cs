@@ -16,38 +16,38 @@ public class BuildManager : MonoBehaviour
         instance = this;
     }
 
-    private TowerBlueprint towerToBuild;
-    private Node selectedNode;
+    private TowerBlueprint _towerToBuild;
+    private Node _selectedNode;
 
     public bool CanBuild
     {
-        get { return towerToBuild != null; }
+        get { return _towerToBuild != null; }
     }
 
     public bool HasMoney
     {
-        get { return Player.Money >= towerToBuild.cost; }
+        get { return Player.Money >= _towerToBuild.cost; }
     }
 
     public void SelectNode(Node node)
     {
-        if (selectedNode == node)
+        if (_selectedNode == node)
         {
             DeselectNode();
             return;
         }
 
-        selectedNode = node;
+        _selectedNode = node;
     }
 
     public void DeselectNode()
     {
-        selectedNode = null;
+        _selectedNode = null;
     }
 
     public void SelectTowerToBuild(TowerBlueprint blueprint)
     {
-        towerToBuild = blueprint;
+        _towerToBuild = blueprint;
 
         DeselectNode();
     }
@@ -66,9 +66,9 @@ public class BuildManager : MonoBehaviour
             return;
         }
 
-        Player.Money -= towerToBuild.cost;
+        Player.Money -= _towerToBuild.cost;
         Debug.Log("Player money: " + Player.Money);
-        GameObject tower = Instantiate(towerToBuild.prefab, node.transform.position, Quaternion.identity);
+        GameObject tower = Instantiate(_towerToBuild.prefab, node.transform.position, Quaternion.identity);
         node.tower = tower;
     }
 }
